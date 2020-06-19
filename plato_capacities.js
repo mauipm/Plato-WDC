@@ -73,19 +73,19 @@
     myConnector.getData = function(table, doneCallback) {	
 		
 		// connectionData contains the userinput passed in the onclick event.
-		var user_credentials = tableau.connectionData;
-		
+		var user_input = tableau.connectionData
+
 		 $.ajax({
 		 type: 'GET',
 		 //crossDomain: true,
 		 dataType: 'json',
-		 url: "https://sww-e.lht.fra.dlh.de/mplan-rpc/rest/layover/capacities?profile=tap_wf&role=6003&date=2020-06-07",
+		 url: "https://sww-e.lht.fra.dlh.de/mplan-rpc/rest/layover/capacities?profile=tap_wf&role=6003&date=" + user_input.date,
 		 //headers: {'Authorization' : 'Basic ' + btoa('ltpProdRpc' + ':' + 'ltpProdRpc!')},
 		 /*beforeSend: function(xhr) { 
 			xhr.setRequestHeader('Authorization', 'Basic ' + btoa('ltpProdRpc' + ':' + 'ltpProdRpc!'));
 		 },*/
-		 username: user_credentials.user,
-		 password: user_credentials.pwd,
+		 username: user_input.user,
+		 password: user_input.pwd,
 		 success: function(resp) {
 			 
 			var tableData = [];
@@ -118,9 +118,9 @@
     $(document).ready(function() {
         $("#submitButton").click(function() {
 			// Store User Input from HTML-Form in an object and return it for use in another function
-			var user_credentials = {user:$("#txtUsername").val().trim(), pwd:$("#txtPassword").val().trim()};
+			var user_input = {user:$("#txtUsername").val().trim(), pwd:$("#txtPassword").val().trim(), date:$("#dateInput").val().trim()}
 			
-			tableau.connectionData = JSON.stringify(user_credentials); // Use the connectionData method to pass the user_credentials to the getSchema and getData functions
+			tableau.connectionData = JSON.stringify(user_input); // Use the connectionData method to pass the user_credentials to the getSchema and getData functions
 			tableau.connectionName = "Plato Capacities"; // This will be the data source name in Tableau
 			tableau.submit(); // This sends the connector object to Tableau
 		});
