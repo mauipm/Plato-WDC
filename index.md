@@ -18,9 +18,9 @@
 			<br /><br />
 			<input type="text" id="txtUsername" placeholder="username" required>
 			<br /><br />
-			<input type="text" id="txtPassword" placeholder="password" required>
+			<input type="password" id="txtPassword" placeholder="password" required>
 			<br /><br />
-			<input type="date" id="date" required>
+			<input type="date" id="dateInput" required>
 			<br /><br />
                 <button type = "button" id = "submitButton" class = "btn btn-success" style = "margin: 10px;">Get Data!</button>
             </div>
